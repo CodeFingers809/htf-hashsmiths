@@ -1,0 +1,202 @@
+@import "tailwindcss";
+
+@theme {
+  --font-family-orbitron: "Orbitron", monospace;
+  --font-family-rajdhani: "Rajdhani", sans-serif;
+
+  /* TRON Legacy Color Palette */
+  --color-cyber-cyan: #00D9FF;
+  --color-cyber-cyan-dark: #0099CC;
+  --color-cyber-cyan-light: #33E5FF;
+  --color-neon-orange: #FF6B35;
+  --color-neon-orange-dark: #CC4400;
+  --color-neon-orange-light: #FF9966;
+  --color-grid-lines: #004D66;
+
+  /* Dark Theme Colors */
+  --color-background: #0a0a0f;
+  --color-foreground: #f0f4f8;
+  --color-card: #1a1a2e;
+  --color-card-foreground: #e0e6ea;
+  --color-primary: var(--color-cyber-cyan);
+  --color-primary-foreground: #0a0a0f;
+  --color-secondary: var(--color-neon-orange);
+  --color-secondary-foreground: #0a0a0f;
+  --color-muted: #16213e;
+  --color-muted-foreground: #94a3b8;
+  --color-accent: var(--color-cyber-cyan);
+  --color-accent-foreground: #0a0a0f;
+  --color-border: rgba(0, 217, 255, 0.2);
+  --color-input: #16213e;
+  --color-ring: var(--color-cyber-cyan);
+
+  --radius: 0.5rem;
+}
+
+body {
+  font-family: var(--font-family-rajdhani);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  background-image:
+    linear-gradient(rgba(0, 217, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 217, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.font-orbitron {
+  font-family: var(--font-family-orbitron);
+}
+
+.font-rajdhani {
+  font-family: var(--font-family-rajdhani);
+}
+
+/* TRON Legacy Cyber Effects */
+.cyber-glow {
+  box-shadow:
+    0 0 20px rgba(0, 217, 255, 0.3),
+    inset 0 0 20px rgba(0, 217, 255, 0.1);
+}
+
+.cyber-border {
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  position: relative;
+}
+
+.cyber-border::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, rgba(0, 217, 255, 0.5), rgba(255, 107, 53, 0.5));
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.cyber-border:hover::before {
+  opacity: 1;
+}
+
+.cyber-card {
+  background: rgba(26, 26, 46, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 217, 255, 0.3);
+  box-shadow:
+    0 0 20px rgba(0, 217, 255, 0.3),
+    inset 0 0 20px rgba(0, 217, 255, 0.1);
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 20px, 100% 100%, 20px 100%, 0 calc(100% - 20px));
+}
+
+.hex-clip {
+  clip-path: polygon(30% 0%, 70% 0%, 100% 50%, 70% 100%, 30% 100%, 0% 50%);
+}
+
+.neon-text {
+  color: var(--color-cyber-cyan);
+  text-shadow:
+    0 0 5px rgba(0, 217, 255, 0.5),
+    0 0 10px rgba(0, 217, 255, 0.3),
+    0 0 20px rgba(0, 217, 255, 0.2);
+}
+
+.neon-orange-text {
+  color: var(--color-neon-orange);
+  text-shadow:
+    0 0 5px rgba(255, 107, 53, 0.5),
+    0 0 10px rgba(255, 107, 53, 0.3),
+    0 0 20px rgba(255, 107, 53, 0.2);
+}
+
+.data-stream {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(0, 217, 255, 0.1),
+    transparent
+  );
+  background-size: 200% 100%;
+  animation: dataStream 2s linear infinite;
+}
+
+.pulse-cyan {
+  animation: pulseCyan 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes dataStream {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes pulseCyan {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 217, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 217, 255, 0.6);
+  }
+}
+
+/* Clerk Form Input Overrides */
+.cl-formFieldInput,
+.cl-formFieldInput:focus,
+.cl-formFieldInput:active,
+input[data-clerk-element="formFieldInput"],
+input[data-clerk-element="formFieldInput"]:focus {
+  color: white !important;
+  background-color: rgba(55, 65, 81, 0.6) !important;
+  border-color: rgba(0, 217, 255, 0.4) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+}
+
+.cl-formFieldInput::placeholder,
+input[data-clerk-element="formFieldInput"]::placeholder {
+  color: rgba(156, 163, 175, 1) !important;
+}
+
+.cl-formFieldLabel,
+label[data-clerk-element="formFieldLabel"] {
+  color: white !important;
+  font-family: 'Rajdhani', sans-serif !important;
+  font-weight: 600 !important;
+}
+
+/* OTP Input styling */
+.cl-otpCodeFieldInput,
+input[data-clerk-element="otpCodeFieldInput"] {
+  color: white !important;
+  background-color: rgba(55, 65, 81, 0.6) !important;
+  border-color: rgba(0, 217, 255, 0.4) !important;
+  text-align: center !important;
+}
+
+/* Error and success text */
+.cl-formFieldErrorText {
+  color: rgb(248, 113, 113) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+}
+
+.cl-formFieldSuccessText {
+  color: rgb(74, 222, 128) !important;
+  font-family: 'Rajdhani', sans-serif !important;
+}
+
+/* Additional Clerk styling overrides */
+.cl-internal-b3fm6y,
+.cl-formFieldInput__identifier {
+  color: white !important;
+  background-color: rgba(55, 65, 81, 0.8) !important;
+}
+
+/* Phone input specific styling */
+.cl-formFieldInput__phoneNumber,
+.cl-formFieldInput[data-field-type="phoneNumber"] {
+  color: white !important;
+  background-color: rgba(55, 65, 81, 0.8) !important;
+}
